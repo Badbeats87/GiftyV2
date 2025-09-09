@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom'; // Import Link
-import './BusinessProfile.css'; // We'll create this CSS file next
+import { useParams, Link } from 'react-router-dom';
+import './BusinessProfile.css';
+import { Container, Typography, Box, Card, CardMedia, Button, Grid } from '@mui/material'; // Import Material UI components
 
 function BusinessProfile() {
   const { id } = useParams();
@@ -34,49 +35,89 @@ function BusinessProfile() {
   }, [id]);
 
   if (loading) {
-    return <div className="business-profile-container">Loading business details...</div>;
+    return (
+      <Container className="business-profile-container" sx={{ py: 4, textAlign: 'center' }}>
+        <Typography variant="h5">Loading business details...</Typography>
+      </Container>
+    );
   }
 
   if (error) {
-    return <div className="business-profile-container error">{error}</div>;
+    return (
+      <Container className="business-profile-container error" sx={{ py: 4, textAlign: 'center', color: 'error.main' }}>
+        <Typography variant="h5">{error}</Typography>
+      </Container>
+    );
   }
 
   if (!business) {
-    return <div className="business-profile-container">No business data available.</div>;
+    return (
+      <Container className="business-profile-container" sx={{ py: 4, textAlign: 'center' }}>
+        <Typography variant="h5">No business data available.</Typography>
+      </Container>
+    );
   }
 
   return (
-    <div className="business-profile-container">
-      <img src={business.logo_url || 'https://via.placeholder.com/400x200/CCCCCC/FFFFFF?text=No+Image'} alt={business.name} className="business-profile-image" />
-      <h1>{business.name}</h1>
-      <p className="business-type-location">{business.business_type || 'Type N/A'} - {business.address || 'Location N/A'}</p>
-      <p className="business-description">{business.description}</p>
+    <Container className="business-profile-container" sx={{ py: 4, textAlign: 'center', bgcolor: 'background.paper', borderRadius: '10px', boxShadow: 3, maxWidth: 900, mx: 'auto', my: 4 }}>
+      <CardMedia
+        component="img"
+        height="350"
+        image={business.logo_url || 'https://via.placeholder.com/400x200/CCCCCC/FFFFFF?text=No+Image'}
+        alt={business.name}
+        sx={{ borderRadius: '8px', mb: 3 }}
+      />
+      <Typography variant="h1" component="h1" gutterBottom>
+        {business.name}
+      </Typography>
+      <Typography variant="h6" component="p" color="text.secondary" sx={{ mb: 3 }}>
+        {business.business_type || 'Type N/A'} - {business.address || 'Location N/A'}
+      </Typography>
+      <Typography variant="body1" component="p" sx={{ mb: 4, textAlign: 'left', color: 'text.primary' }}>
+        {business.description}
+      </Typography>
 
-      {(() => {
-        const giftCardsToDisplay = business.giftCards && business.giftCards.length > 0
-          ? business.giftCards
-          : [{ value: 10 }, { value: 25 }, { value: 50 }, { value: 100 }]; // Default values
+      <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid', borderColor: 'divider' }}>
+        <Typography variant="h2" component="h2" gutterBottom>
+          Gift Card Options
+        </Typography>
+        <Grid container spacing={2} justifyContent="center" sx={{ mb: 4 }}>
+          {(() => {
+            const giftCardsToDisplay = business.giftCards && business.giftCards.length > 0
+              ? business.giftCards
+              : [{ value: 10 }, { value: 25 }, { value: 50 }, { value: 100 }];
 
-        return (
-          <div className="gift-card-options">
-            <h2>Gift Card Options</h2>
-            <div className="gift-card-list">
-              {giftCardsToDisplay.map((card, index) => (
-                <div key={index} className="gift-card-item">
-                  ${card.value}
-                  <Link to={`/purchase/${business.id}/${card.value}`} className="button">Purchase</Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-      })()}
+            return giftCardsToDisplay.map((card, index) => (
+              <Grid item key={index}>
+                <Card sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, bgcolor: 'background.default', boxShadow: 2 }}>
+                  <Typography variant="h6" color="primary">
+                    ${card.value}
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to={`/purchase/${business.id}/${card.value}`}
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                  >
+                    Purchase
+                  </Button>
+                </Card>
+              </Grid>
+            ));
+          })()}
+        </Grid>
+      </Box>
 
-      <div className="business-terms">
-        <h2>Terms & Conditions</h2>
-        <p>{business.terms_and_conditions}</p>
-      </div>
-    </div>
+      <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid', borderColor: 'divider' }}>
+        <Typography variant="h2" component="h2" gutterBottom>
+          Terms & Conditions
+        </Typography>
+        <Typography variant="body2" component="p" color="text.secondary" sx={{ textAlign: 'left' }}>
+          {business.terms_and_conditions}
+        </Typography>
+      </Box>
+    </Container>
   );
 }
 

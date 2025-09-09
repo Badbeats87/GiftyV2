@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './GiftCardPurchase.css'; // We'll create this CSS file next
+import './GiftCardPurchase.css';
 import axios from 'axios';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'; // Import Stripe hooks
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Container, Typography, Box, TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material'; // Import Material UI components
 
 function GiftCardPurchase() {
   const { businessId, value } = useParams();
@@ -15,7 +16,7 @@ function GiftCardPurchase() {
   const [recipientEmail, setRecipientEmail] = useState('');
   const [personalMessage, setPersonalMessage] = useState('');
   const [loading, setLoading] = useState(true);
-  const [processingPayment, setProcessingPayment] = useState(false); // New state for payment processing
+  const [processingPayment, setProcessingPayment] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function GiftCardPurchase() {
           if (!selectedAmount && foundBusiness.giftCards && foundBusiness.giftCards.length > 0) {
             setSelectedAmount(foundBusiness.giftCards[0].value);
           } else if (!selectedAmount) {
-            setSelectedAmount(50); // Default to $50
+            setSelectedAmount(50);
           }
         } else {
           setError('Business not found.');
@@ -67,7 +68,7 @@ function GiftCardPurchase() {
         type: 'card',
         card: elements.getElement(CardElement),
         billing_details: {
-          email: recipientEmail, // Use recipient email for billing details
+          email: recipientEmail,
         },
       });
 
@@ -104,72 +105,89 @@ function GiftCardPurchase() {
   };
 
   if (loading) {
-    return <div className="gift-card-purchase-container">Loading purchase options...</div>;
+    return (
+      <Container className="gift-card-purchase-container" sx={{ py: 4, textAlign: 'center' }}>
+        <Typography variant="h5">Loading purchase options...</Typography>
+      </Container>
+    );
   }
 
   if (error) {
-    return <div className="gift-card-purchase-container error">{error}</div>;
+    return (
+      <Container className="gift-card-purchase-container error" sx={{ py: 4, textAlign: 'center', color: 'error.main' }}>
+        <Typography variant="h5">{error}</Typography>
+      </Container>
+    );
   }
 
   if (!business) {
-    return <div className="gift-card-purchase-container">No business data available for purchase.</div>;
+    return (
+      <Container className="gift-card-purchase-container" sx={{ py: 4, textAlign: 'center' }}>
+        <Typography variant="h5">No business data available for purchase.</Typography>
+      </Container>
+    );
   }
 
   return (
-    <div className="gift-card-purchase-container">
-      <h1>Purchase Gift Card for {business.name}</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="amount">Select Amount:</label>
-          <select
+    <Container className="gift-card-purchase-container" sx={{ py: 4, textAlign: 'center', bgcolor: 'background.paper', borderRadius: '10px', boxShadow: 3, maxWidth: 600, mx: 'auto', my: 4 }}>
+      <Typography variant="h1" component="h1" gutterBottom>
+        Purchase Gift Card for {business.name}
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <FormControl fullWidth sx={{ mb: 3 }}>
+          <InputLabel id="amount-select-label">Select Amount</InputLabel>
+          <Select
+            labelId="amount-select-label"
             id="amount"
             value={selectedAmount}
+            label="Select Amount"
             onChange={(e) => setSelectedAmount(parseInt(e.target.value))}
             required
           >
-            <option value="">Select an amount</option>
+            <MenuItem value="">Select an amount</MenuItem>
             {(business.giftCards && business.giftCards.length > 0
               ? business.giftCards
-              : [{ value: 10 }, { value: 25 }, { value: 50 }, { value: 100 }] // Default values
+              : [{ value: 10 }, { value: 25 }, { value: 50 }, { value: 100 }]
             ).map((card, index) => (
-              <option key={index} value={card.value}>${card.value}</option>
+              <MenuItem key={index} value={card.value}>${card.value}</MenuItem>
             ))}
-          </select>
-        </div>
+          </Select>
+        </FormControl>
 
-        <div className="form-group">
-          <label htmlFor="recipientEmail">Recipient Email:</label>
-          <input
-            type="email"
-            id="recipientEmail"
-            value={recipientEmail}
-            onChange={(e) => setRecipientEmail(e.target.value)}
-            placeholder="recipient@example.com"
-            required
-          />
-        </div>
+        <TextField
+          label="Recipient Email"
+          type="email"
+          id="recipientEmail"
+          value={recipientEmail}
+          onChange={(e) => setRecipientEmail(e.target.value)}
+          placeholder="recipient@example.com"
+          required
+          fullWidth
+          sx={{ mb: 3 }}
+        />
 
-        <div className="form-group">
-          <label htmlFor="personalMessage">Personal Message (Optional):</label>
-          <textarea
-            id="personalMessage"
-            value={personalMessage}
-            onChange={(e) => setPersonalMessage(e.target.value)}
-            rows="4"
-            placeholder="Add a personal message for the recipient..."
-          ></textarea>
-        </div>
+        <TextField
+          label="Personal Message (Optional)"
+          id="personalMessage"
+          value={personalMessage}
+          onChange={(e) => setPersonalMessage(e.target.value)}
+          multiline
+          rows={4}
+          placeholder="Add a personal message for the recipient..."
+          fullWidth
+          sx={{ mb: 3 }}
+        />
 
-        <div className="form-group">
-          <label>Card Details:</label>
+        <Box sx={{ mb: 4, p: 2, border: '1px solid', borderColor: 'divider', borderRadius: '8px', bgcolor: 'background.default' }}>
+          <Typography variant="subtitle1" sx={{ mb: 1 }}>Card Details:</Typography>
           <CardElement options={{ style: { base: { fontSize: '16px' } } }} />
-        </div>
+        </Box>
 
-        <button type="submit" disabled={!stripe || processingPayment}>
+        <Button type="submit" variant="contained" color="primary" fullWidth disabled={!stripe || processingPayment} sx={{ py: 1.5 }}>
           {processingPayment ? 'Processing...' : `Proceed to Payment ($${selectedAmount || '0'})`}
-        </button>
-      </form>
-    </div>
+        </Button>
+      </Box>
+    </Container>
   );
 }
 

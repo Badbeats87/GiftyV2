@@ -1,85 +1,14 @@
-/* General Body Styles */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f2f5; /* Light grey background */
-  color: #333;
-}
-
-/* Main App Container */
+/* All global styles are now handled by Material UI's ThemeProvider and CssBaseline. */
+/* Component-specific styles are handled within their respective CSS files or directly via Material UI's sx prop. */
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Content Area (below Navbar) */
 .content {
   flex-grow: 1;
-  padding: 20px;
-}
-
-/* Basic Link Styling */
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-/* Paragraphs */
-p {
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-/* Buttons */
-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Form Elements */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  margin-bottom: 1rem;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }

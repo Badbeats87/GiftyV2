@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Businesses.css'; // We'll create this CSS file next
+import './Businesses.css';
+import { Container, Typography, Grid, Card, CardContent, CardMedia, Button, Box } from '@mui/material'; // Import Material UI components
 
 function Businesses() {
   const [businesses, setBusinesses] = useState([]);
@@ -29,27 +30,60 @@ function Businesses() {
   }, []);
 
   if (loading) {
-    return <div className="businesses-container">Loading businesses...</div>;
+    return (
+      <Container className="businesses-container" sx={{ py: 4, textAlign: 'center' }}>
+        <Typography variant="h5">Loading businesses...</Typography>
+      </Container>
+    );
   }
 
   if (error) {
-    return <div className="businesses-container error">{error}</div>;
+    return (
+      <Container className="businesses-container error" sx={{ py: 4, textAlign: 'center', color: 'error.main' }}>
+        <Typography variant="h5">{error}</Typography>
+      </Container>
+    );
   }
 
   return (
-    <div className="businesses-container">
-      <h2>Our Partner Businesses</h2>
-      <div className="business-list">
+    <Container className="businesses-container" sx={{ py: 4, textAlign: 'center' }}>
+      <Typography variant="h2" component="h2" gutterBottom>
+        Our Partner Businesses
+      </Typography>
+      <Grid container spacing={4} justifyContent="center">
         {businesses.map(business => (
-          <div key={business.id} className="business-card">
-            <img src={business.logo_url || 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=No+Logo'} alt={business.name} className="business-image" />
-            <h3>{business.name}</h3>
-            <p>{business.business_type || 'Type N/A'} - {business.address || 'Location N/A'}</p>
-            <Link to={`/businesses/${business.id}`} className="view-details-button">View Details</Link>
-          </div>
+          <Grid item key={business.id} xs={12} sm={6} md={4}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardMedia
+                component="img"
+                height="200"
+                image={business.logo_url || 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=No+Logo'}
+                alt={business.name}
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography gutterBottom variant="h5" component="h3">
+                  {business.name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {business.business_type || 'Type N/A'} - {business.address || 'Location N/A'}
+                </Typography>
+              </CardContent>
+              <Box sx={{ p: 2 }}>
+                <Button
+                  component={Link}
+                  to={`/businesses/${business.id}`}
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  View Details
+                </Button>
+              </Box>
+            </Card>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Container>
   );
 }
 
