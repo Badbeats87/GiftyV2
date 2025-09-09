@@ -1,0 +1,80 @@
+.admin-transaction-logs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f4f7f6;
+  min-height: 90vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.admin-transaction-logs-container h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.admin-transaction-logs-container p {
+  color: #666;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.transactions-list {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow-x: auto; /* Allows horizontal scrolling for smaller screens */
+}
+
+.transactions-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.transactions-list th,
+.transactions-list td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transactions-list th {
+  background-color: #007bff;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.transactions-list tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.transactions-list tr:hover {
+  background-color: #e9ecef;
+}
+
+.transactions-list td {
+  color: #333;
+  font-size: 0.9em;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.1em;
+  width: 100%;
+  max-width: 600px;
+}

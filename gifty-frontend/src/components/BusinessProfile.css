@@ -1,0 +1,101 @@
+.business-profile-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.business-profile-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.business-profile-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.business-type-location {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.business-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.gift-card-options,
+.business-terms {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.gift-card-options h2,
+.business-terms h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.gift-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.gift-card-item {
+  background-color: #f0f8ff; /* Light blue background */
+  border: 1px solid #a0d9ff;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
+}
+
+.gift-card-item button {
+  background-color: #28a745; /* Green for purchase */
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.gift-card-item button:hover {
+  background-color: #218838;
+}
+
+.business-terms p {
+  text-align: left;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.business-profile-container.error {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,72 @@
+.gift-card-purchase-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.gift-card-purchase-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.gift-card-purchase-container .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.gift-card-purchase-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.gift-card-purchase-container select,
+.gift-card-purchase-container input[type="email"],
+.gift-card-purchase-container textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.gift-card-purchase-container select:focus,
+.gift-card-purchase-container input[type="email"]:focus,
+.gift-card-purchase-container textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.gift-card-purchase-container textarea {
+  resize: vertical;
+}
+
+.gift-card-purchase-container button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.gift-card-purchase-container button:hover {
+  background-color: #0056b3;
+}
+
+.gift-card-purchase-container.error {
+  color: red;
+  font-weight: bold;
+}

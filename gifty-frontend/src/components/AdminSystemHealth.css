@@ -1,0 +1,82 @@
+.admin-system-health-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f4f7f6;
+  min-height: 90vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.admin-system-health-container h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.health-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.metric-card {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.metric-card h3 {
+  color: #007bff;
+  font-size: 1.6em;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.metric-card p {
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.metric-card .detail {
+  color: #777;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.status-up {
+  color: #28a745; /* Green for operational */
+}
+
+.status-down {
+  color: #dc3545; /* Red for down */
+}
+
+.status-degraded {
+  color: #ffc107; /* Yellow for degraded */
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.1em;
+  width: 100%;
+  max-width: 600px;
+}
