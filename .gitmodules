@@ -1,0 +1,3 @@
+[submodule "giftysv"]
+	path = giftysv
+	url = https://github.com/Badbeats87/giftysv.git

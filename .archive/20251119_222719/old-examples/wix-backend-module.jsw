@@ -1,0 +1,57 @@
+/**
+ * BACKEND MODULE (.jsw) - NOT HTTP Function
+ * Copy to: Wix Editor → Backend → products.jsw
+ *
+ * Backend modules have different permission context than HTTP functions
+ * This might work where HTTP functions don't
+ */
+
+import { products } from 'wix-stores.v2';
+import { elevate } from 'wix-auth';
+
+// Elevate the createProduct function
+const createProductElevated = elevate(products.createProduct);
+
+/**
+ * Create a Wix product for a business
+ * This is a backend function that runs with site owner permissions
+ */
+export async function createBusinessProduct(name, description, price, businessId) {
+  console.log('=== createBusinessProduct called ===');
+  console.log('Input:', { name, description, price, businessId });
+
+  try {
+    const productPayload = {
+      product: {
+        name: name,
+        description: description || `Digital gift card for ${name}`,
+        productType: 'physical',
+        priceData: {
+          price: price.toString(),
+          currency: 'USD'
+        },
+        stock: {
+          trackInventory: false,
+          inStock: true
+        },
+        visible: true
+      }
+    };
+
+    console.log('Calling elevated createProduct with:', JSON.stringify(productPayload, null, 2));
+
+    const result = await createProductElevated(productPayload);
+
+    console.log('Success!', JSON.stringify(result, null, 2));
+
+    return {
+      success: true,
+      productId: result.product._id || result.product.id,
+      slug: result.product.slug
+    };
+
+  } catch (error) {
+    console.error('Error in createBusinessProduct:', error);
+    throw error;
+  }
+}

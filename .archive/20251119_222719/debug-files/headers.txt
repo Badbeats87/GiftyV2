@@ -1,0 +1,15 @@
+HTTP/2 400 
+date: Wed, 19 Nov 2025 19:11:45 GMT
+content-type: application/json
+content-length: 177
+x-wix-responded-by: wix.stores.catalog.v3.product:CreateProduct:com.wixpress.stores.catalog.stores-catalog-orchestrator
+x-seen-by: W1c2/pqHBqplxcWufHCkILxkNjrXdwdgtu6E0yACibU=,m0j2EEknGIVUW/liY8BLLilLbkWdDUcTdxzcTl+HsCAQXT2AyjWfyxKagyd4/pDD,rXUceJIlvIg2Ftogbhjv0GT4Cj0KRYEd/h+6S4yObEtSMT0gxKTfU9vyN3YgdZZ6QwXfRyYcZyZbJ4aumpFkOA==,1SOak63iPgnnfsRTllp8TkLmQs8tF1XH5kmZfb3P/qk=
+x-wix-request-id: 1763579505.365374443506143180829
+access-control-expose-headers: x-wix-request-id, x-wix-consistent
+set-cookie: XSRF-TOKEN=1763579505|fuA90Ss0vqoX; Path=/; Domain=www.wixapis.com; Secure; SameSite=None
+server: Pepyaka
+x-content-type-options: nosniff
+via: 1.1 google
+glb-x-seen-by: wMMTADooq5AJ3cFomJ/MuXOQWGce7NCZXKms1ErOpBs=
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+

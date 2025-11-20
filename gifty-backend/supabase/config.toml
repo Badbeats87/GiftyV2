@@ -1,0 +1,51 @@
+# Supabase Configuration File
+# Used by Supabase CLI for local development and deployment
+
+[project]
+# Your project ID - update after creating project
+# project_id = "xxxxx"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage"]
+extra_search_path = ["public"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+smtp_port = 54325
+pop3_port = 54326
+
+[storage]
+enabled = true
+file_size_limit = "50MiB"
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://localhost:3000"]
+jwt_expiry = 3600
+enable_signup = true
+
+[edge_runtime]
+enabled = true
+
+# Configure secrets for local development
+# In production, these are set in Supabase Dashboard
+[edge_runtime.secrets]
+# STRIPE_SECRET_KEY = "sk_test_..."
+# STRIPE_WEBHOOK_SECRET = "whsec_..."
+# RESEND_API_KEY = "re_..."
+# FROM_EMAIL = "noreply@yourdomain.com"
+# ADMIN_EMAIL = "admin@yourdomain.com"
+# FRONTEND_URL = "http://localhost:3000"
